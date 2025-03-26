@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blazers and Sport Coats</title>
+
+<style>
+    #back {
+        background-color: rgb(192,192,192);
+        border: 5px solid rgb(0,0,0);
+        font-family: Times New Roman, serif;
+    }
+
+    .nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .nav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .nav a:hover {
+      background-color: #D3D3D3;
+      color: black;
+    }
+
+    .nav a.active {
+      background-color: #af1010;
+      color: white;
+    }
+
+    #title {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 40px;
+    }
+
+    #titleabout {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 50px;
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+    }
+
+     #toc {
+        position: fixed;
+        top: 0;
+        right: -280px; /* Hidden by default */
+        width: 250px;
+        height: 100%;
+        background-color: #f4f4f4;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    #toc h2 {
+        text-align: center;
+    }
+
+    #toc ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #toc ul li {
+        margin: 10px 0;
+    }
+
+    #toc a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        display: block;
+        padding: 8px;
+        border-radius: 5px;
+        transition: background 0.2s;
+    }
+
+    #toc a:hover {
+        color: #af1010;
+    }
+
+    .subsection {
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+    #togglebtn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #af1010;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background 0.3s;
+        z-index: 1100;
+    }
+
+    #togglebtn:hover {
+        background-color: #800000;
+    }
+
+    .open {
+        right: 0 !important;
+    }
+
+    .button-open {
+        right: 230px; !important;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .slideshow-container {
+        width: 1000px;
+        position: relative;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .slideshow-container img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+    #blazer {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 30px;
+    }
+
+    #blazerabout {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        margin-top: 50px;
+        margin-bottom: 200px;
+    }
+
+    #colour {
+        font-family: Times New Roman, serif;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 250px;
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    #colourpic1 {
+        top: 1050px;
+        left: 800px;
+        position: absolute;
+    }
+
+    #colourpic1 img {
+        width: 250px;
+        height: 280px;
+    }
+
+    #colourpic2 {
+        top: 1050px;
+        left: 1050px;
+        position: absolute;
+    }
+
+    #colourpic2 img {
+        width: 250px;
+        height: 280px;
+    }
+
+    #button {
+        font-family: Times New Roman, serif;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 200px;
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    #buttonpic {
+        top: 1450px;
+        left: 800px;
+        position: absolute;
+    }
+
+    #buttonpic img {
+        width: 300px;
+        height 200px;
+    }
+
+    #sportcoat {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 30px;
+        margin-top: 350px
+    }
+
+    #sportcoatab {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        margin-top: 50px;
+        margin-bottom: 150px;
+    }
+
+    #sportcoattext {
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 500px;
+        padding: 20px;
+    }
+
+    #sportcoat3text {
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 150px;
+        padding: 20px;
+    }
+
+    #sportpic1 {
+        top: 2200px;
+        left: 750px;
+        position: absolute;
+        font-size: 16px;
+    }
+
+    #sportpic1 img {
+        width: 250px;
+        height: 250px;
+    }
+
+    #sportpic1-2 {
+        top: 2200px;
+        left: 1050px;
+        position: absolute;
+        font-size: 16px;
+    }
+
+    #sportpic1-2 img {
+        width: 250px;
+        height: 250px;
+    }
+
+    #sportpic1-3 {
+        top: 2500px;
+        left: 750px;
+        position: absolute;
+        font-size: 16px;
+    }
+
+    #sportpic1-3 img {
+        width: 250px;
+        height: 250px;
+    }
+
+    #sportpic1-4 {
+        top: 2500px;
+        left: 1050px;
+        position: absolute;
+        font-size: 16px;
+    }
+
+    #sportpic1-4 img {
+        width: 250px;
+        height: 250px;
+    }
+
+    #sportpic2 {
+        top: 2850px;
+        left: 750px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #sportpic2 img {
+        width: 250px;
+        height: 250px;
+    }
+
+     #sportpic2-2 {
+        top: 2850px;
+        left: 1050px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #sportpic2-2 img {
+        width: 250px;
+        height: 250px;
+    }
+
+     #sportpic2-3 {
+        top: 3200px;
+        left: 750px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #sportpic2-3 img {
+        width: 250px;
+        height: 250px;
+    }
+
+     #sportpic2-4 {
+        top: 3200px;
+        left: 1050px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #sportpic2-4 img {
+        width: 250px;
+        height: 250px;
+    }
+
+     #sportpic2-5 {
+        top: 3200px;
+        left: 30px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #sportpic2-5 img {
+        width: 250px;
+        height: 250px;
+    }
+
+     #sportpic2-6 {
+        top: 3200px;
+        left: 330px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #sportpic2-6 img {
+        width: 250px;
+        height: 250px;
+    }
+</style>
+</head>
+<body>
+    <div id="back">
+    <div class="nav">
+      <a href="./Home.html">Home</a>
+      <a href="./Suits.html">Suits</a>
+      <a class="active" href="./Blazers&SportCoats.html">Blazers and Sport Coats</a>
+      <a href="./Shirts.html">Shirts</a>
+      <a href="./Accessories.html">Accessories</a>
+      <a href="./Recommendations.html">Recommendations</a>
+    </div>
+
+    <div id="toc">
+        <h2>Contents</h2>
+        <ul>
+            <li>
+                <a href="#section1">Blazers</a>
+                <ul class="subsection">
+                    <li><a href="#section1-1">Buttons</a></li>
+                    <li><a href="#section1-2">Colour</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#section2">Sport Coats</a>
+                <ul class="subsection">
+                    <li><a href="#section2-1">Patterned Cloth</a></li>
+                    <li><a href="#section2-2">Fabric</a></li>
+                    <li><a href="#section2-3">Weight</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <button id="togglebtn">☰</button>
+
+    <div id="title">
+        <h1>Blazers and Sport Coats</h1>
+    </div>
+
+    <div id="titleabout">
+        <p>Alternatives to suits if less attention is what is desired or if the occasion is more casual.</p>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="slide2/sportcoat1.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide2/blazer2.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide2/sportcoat2.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide2/blazer3.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide2/sportcoat3.jpg" style="width:100%">
+        </div>
+    </div>
+
+    <div class="Section" id="section1">
+    <div id="blazer">
+        <h3>Blazers</h3>
+    </div>
+    <div id="blazerabout">
+        <p>Blazers are defined by both their <b>colour</b> and the <b>buttons</b> that are present on it.</p>
+    </div>
+    </div>
+    <div id="colour">
+        <div id="section1-1">
+        <h3>Colour</h3>
+        </div>
+        <p>The colour of a blazer is often a solid colour, the most common being blue or black which adds to its formality.</p>
+    </div>
+    <div id="colourpic1">
+        <img src="blazer&sportcoat/navyblazer.jpg" alt="Navy blazer">
+    </div>
+
+    <div id="colourpic2">
+        <img src="blazer&sportcoat/blackblazer.jpg" alt="Black blazer">
+    </div>
+
+    <div id="button">
+        <div id="section1-2">
+        <h3>Buttons</h3>
+        </div>
+        <p>A blazer is usually made with buttons that are either <b>silver</b>, <b>gold</b> or <b>brass</b>.</p>
+    </div>
+    <div id="buttonpic">
+        <img src="blazer&sportcoat/blazerbuttons.jpg" alt="Blazer buttons">
+    </div>
+
+
+    <div class="section2" id="section2">
+    <div id="sportcoat">
+        <h3>Sport Coats</h3>
+    </div>
+    </div>
+    <div id="sportcoatab">
+        <p>A sport coat is distinguished from a blazer through its patterned cloth, fabric and weight. A sport coat is the most casual
+        of the three jacket types.</p>
+    </div>
+
+        <div id="sportcoattext">
+            <div id="section2-1">
+                <h4>Patterns</h4>
+            </div>
+            <p>Since a sport coat is a more casual option it can be customised more in terms of patterns to show off one's
+            individual style. The most common patterns to see on a sport coat are: <b>glen check</b>, <b>windowpane</b>, <b>herringbone</b>
+                and <b>houndstooth</b>.</p>
+
+        <div id="sportpic1">
+            <img src="blazer&sportcoat/glencheck.jpg" alt="Glen check pattern">
+            <p>Glen check</p>
+        </div>
+        <div id="sportpic1-2">
+            <img src="blazer&sportcoat/windowpane.jpg" alt="Windowpane pattern">
+            <p>Windowpane</p>
+        </div>
+        <div id="sportpic1-3">
+            <img src="blazer&sportcoat/herringbonepat.jpg" alt="Herringbone pattern">
+            <p>Herringbone</p>
+        </div>
+        <div id="sportpic1-4">
+            <img src="blazer&sportcoat/houndstoothpat.jpg" alt="Houndstooth pattern">
+            <p>Houndstooth</p>
+        </div>
+        </div>
+
+        <div id="sportcoattext">
+            <div id="section2-2">
+                <h4>Fabric</h4>
+            </div>
+            <p>The most common fabrics that can be found on a sport coat are: tweed, houndstooth, mohair and hopsack.
+            Tweed is one of the most recognisable materials for jackets that are worn during sporting events. Its main features
+            are that it has a rough feel and is best worn in cool weather. It is associated with traditional British style and
+            comes in different styles such as Donegal or herringbone. Houndstooth is a busy print that makes an impressionable
+            statement, and it has a low flexibility in terms of styling, thus it better suited for those who already possess
+            multiple sport coats. Mohair is made from lightweight and breathable fabric used for summer sport jackets, it is
+            distinguished by a beautiful sheen and smooth texture, this makes it more formal, thus is less casual than other fabrics.
+            Hopsack is a loosely woven fabric with thicker yarns that makes it a more casual and breathable option for sport coats.
+            It also has a textured appearance and hangs loosely which makes it popular in hot weather.</p>
+        </div>
+        <div id="sportpic2">
+            <img src="blazer&sportcoat/tweed.jpg" alt="Tweed fabric">
+            <p>Tweed</p>
+        </div>
+         <div id="sportpic2-2">
+            <img src="blazer&sportcoat/tweeddon.jpg" alt="Tweed Donegal fabric">
+            <p>Tweed Donegal</p>
+        </div>
+         <div id="sportpic2-3">
+            <img src="blazer&sportcoat/tweedbone.jpg" alt="Tweed Herringbone fabric">
+            <p>Tweed Herringbone</p>
+        </div>
+        <div id="sportpic2-4">
+            <img src="blazer&sportcoat/houndstooth.jpg" alt="Houndstooth fabric">
+            <p>Houndstooth</p>
+        </div>
+         <div id="sportpic2-5">
+            <img src="blazer&sportcoat/mohair.jpg" alt="Mohair fabric">
+            <p>Mohair fabric</p>
+        </div>
+        <div id="sportpic2-6">
+            <img src="blazer&sportcoat/hopsack.jpg" alt="Hopsack fabric">
+            <p>Hopsack</p>
+        </div>
+
+
+        <div id="sportcoat3text">
+            <div id="section2-3">
+            <h4>Weight</h4>
+            </div>
+            <p>The weight of the jacket determines how much the fabric is used. Weight is most often measured in ounces/grams,
+            there are multiple weights that are available and they depend on what type of weather it currently is. A lighter
+            weight means that it is suited for warmer weather while a heavier suit is suited for colder weather.</p>
+        </div>
+    </div>
+
+
+    <script>
+         document.getElementById("togglebtn").addEventListener("click", function() {
+            var toc = document.getElementById("toc");
+            var button = document.getElementById("togglebtn");
+
+            if (toc.style.right === "0px") {
+                toc.style.right = "-280px"; // Hide TOC
+                button.style.right = "20px"; // Move button back
+            } else {
+                toc.style.right = "0px"; // Show TOC
+                button.style.right = "250px"; // Move button along with TOC
+            }
+        });
+
+        (function() {
+            let slideIndex = 0;
+            function showSlides() {
+                let slides = document.getElementsByClassName("mySlides");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 2000); // Change image every 2 seconds
+            }
+            window.onload = showSlides;
+        })();
+    </script>
+</body>
+</html>

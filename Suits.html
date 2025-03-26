@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suits</title>
+
+<style>
+    #back {
+        background-color: rgb(192,192,192);
+        border: 5px solid rgb(0,0,0);
+        font-family: Times New Roman, serif;
+    }
+
+    .nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .nav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .nav a:hover {
+      background-color: #D3D3D3;
+      color: black;
+    }
+
+    .nav a.active {
+      background-color: #af1010;
+      color: white;
+    }
+
+    #suitheader {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 40px;
+    }
+
+    #suitabout {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 50px;
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+    }
+
+     #toc {
+        position: fixed;
+        top: 0;
+        right: -280px; /* Hidden by default */
+        width: 250px;
+        height: 100%;
+        background-color: #f4f4f4;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    #toc h2 {
+        text-align: center;
+    }
+
+    #toc ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #toc ul li {
+        margin: 10px 0;
+    }
+
+    #toc a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        display: block;
+        padding: 8px;
+        border-radius: 5px;
+        transition: background 0.2s;
+    }
+
+    #toc a:hover {
+        color: #af1010;
+    }
+
+    .subsection {
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+    #togglebtn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #af1010;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background 0.3s;
+        z-index: 1100;
+    }
+
+    #togglebtn:hover {
+        background-color: #800000;
+    }
+
+    .open {
+        right: 0 !important;
+    }
+
+    .button-open {
+        right: 230px; !important;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .slideshow-container {
+        width: 1000px;
+        position: relative;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .slideshow-container img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+
+    #typesuits {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        margin-top: 50px;
+        margin-bottom: 200px;
+    }
+
+    #suitstyle {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 30px;
+    }
+
+    #britishsuit {
+        font-family: Times New Roman, serif;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 200px;
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    #britishpic {
+        top: 1000px;
+        left: 800px;
+        position: absolute;
+    }
+
+    #britishpic img {
+        width: 400px;
+        height: 280px;
+    }
+
+    #americansuit {
+        font-family: Times New Roman, serif;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 200px;
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    #americanpic {
+        top: 1350px;
+        left: 800px;
+        position: absolute;
+    }
+
+    #americanpic img {
+        width: 400px;
+        height 300px;
+    }
+
+    #italiansuit {
+        font-family: Times New Roman, serif;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 200px;
+        font-size: 20px;
+        padding:20px;
+    }
+
+    #italianpic {
+        top: 1750px;
+        left: 800px;
+        position: absolute;
+    }
+
+    #italianpic img {
+        width: 400px;
+        height: 300px;
+    }
+
+    #suitcomponent {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 30px;
+        margin-top: 350px
+    }
+
+    #suitcomponentab {
+        width: 100%;
+        text-align: center;
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        margin-top: 50px;
+        margin-bottom: 150px;
+    }
+
+    #suitcomponenttext {
+        font-family: Times New Roman, serif;
+        font-size: 20px;
+        text-align: justify;
+        margin-right: 700px;
+        margin-bottom: 150px;
+        padding: 20px;
+    }
+
+    #suitpic1 {
+        top: 2550px;
+        left: 850px;
+        position: absolute;
+        font-size: 16px;
+    }
+
+    #suitpic1 img {
+        width: 350px;
+        height: 200px;
+    }
+
+    #suitpic2 {
+        top: 2900px;
+        left: 850px;
+        position: absolute;
+        font-family: Times New Roman, serif;
+        font-size: 16px;
+    }
+
+    #suitpic2 img {
+        width: 350px;
+        height: 200px;
+    }
+
+    #suitpic3 {
+    top: 3250px;
+    left: 850px;
+    position: absolute;
+    }
+
+    #suitpic3 img {
+        width: 350px;
+        height: 200px;
+    }
+
+    #suitpic4 {
+        top: 3550px;
+        left: 850px;
+        position: absolute;
+        }
+
+    #suitpic4 img {
+        width:350px;
+        height: 200px;
+        }
+</style>
+</head>
+<body>
+    <div id="back">
+    <div class="nav">
+      <a href="./Home.html">Home</a>
+      <a class="active" href="./Suits.html">Suits</a>
+      <a href="./Blazers&SportCoats.html">Blazers and Sport Coats</a>
+      <a href="./Shirts.html">Shirts</a>
+      <a href="./Accessories.html">Accessories</a>
+      <a href="./Recommendations.html">Recommendations</a>
+    </div>
+
+    <div id="toc">
+        <h2>Contents</h2>
+        <ul>
+            <li>
+                <a href="#section1">Suit Styles</a>
+                <ul class="subsection">
+                    <li><a href="#section1-1">The British Suit</a></li>
+                    <li><a href="#section1-2">The American Suit</a></li>
+                    <li><a href="#section1-3">The Italian Suit</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#section2">Suit Components</a>
+                <ul class="subsection">
+                    <li><a href="#section2-1">Buttons</a></li>
+                    <li><a href="#section2-2">Lapels</a></li>
+                    <li><a href="#section2-3">Vents</a></li>
+                    <li><a href="#section2-4">Pleats</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <button id="togglebtn">☰</button>
+
+    <div id="suitheader">
+        <h1>Suits</h1>
+    </div>
+
+    <div id="suitabout">
+        <p>There are many different types of suits and styling, they all serve a different purpose and occasion. However
+            this will only cover suits that are for the modern age.</p>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="slide1/suit1.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide1/suit2.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide1/suit3.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide1/suit4.jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide1/suit5.jpg" style="width:100%">
+        </div>
+    </div>
+
+    <div class="Section" id="section1">
+    <div id="suitstyle">
+        <h3>Suit Styles</h3>
+    </div>
+    <div id="typesuits">
+        <p>The most well known styling are <b>British</b>, <b>American</b> and <b>Italian</b>.</p>
+    </div>
+    </div>
+    <div id="britishsuit">
+        <div id="section1-1">
+        <h3>The British Suit</h3>
+        </div>
+        <p>The characteristics of a traditional British styled suit are that they are single breasted with two buttons,
+            have two vents at the side of the jacket, a tapered waist and higher armholes.</p>
+    </div>
+    <div id="britishpic">
+        <img src="suit&shirt/britishsuit.jpg" alt="British styled suit">
+    </div>
+
+    <div id="americansuit">
+        <div id="section1-2">
+        <h3>The American Suit</h3>
+        </div>
+        <p>The characteristics of a traditional American styled suit are that they are single breasted with three buttons,
+            have a single vent down the middle of the jacket, no shoulder padding and have a loose fit.</p>
+    </div>
+    <div id="americanpic">
+        <img src="suit&shirt/americansuit.jpg" alt="American styled suit">
+    </div>
+
+    <div id="italiansuit">
+        <div id="section1-3">
+        <h3>The Italian Suit</h3>
+        </div>
+        <p>The characteristics of a traditional Italian styled suit are that they have no flaps on the pockets, no vents,
+            padded shoulders and that they have a very slim and tailored waist.</p>
+    </div>
+    <div id="italianpic">
+        <img src="suit&shirt/italiansuit.jpg" alt="Italian styled suit">
+    </div>
+
+    <div class="section2" id="section2">
+    <div id="suitcomponent">
+        <h3>Suit Components</h3>
+    </div>
+    <div id="suitcomponentab">
+        <p>The main components of a suit are buttons, lapels, vents and pleats.</p>
+    </div>
+
+        <div id="suitcomponenttext">
+            <div id="section2-1">
+                <h4>Buttons</h4>
+            </div>
+            <p>Buttons are located on two parts of the suit, the main front area of the suit and on the sleeves.
+                The buttons on the main area of the suit can either be configured to a <b>single</b> or <b>double</b>
+                breasted suit. A double breasted suit is usually seen as more formal than a single breasted suit however
+                a double breasted suit can still be worn in a less formal setting. The buttons on the sleeves of the
+                jacket serve a decorative purpose more than a functional purpose. The buttons on the sleeve can be
+                used to roll up the sleeves however this is rarely done. To add, the buttons on suits that are bought off the rack
+                usually don't have any functionality and are purely cosmetic.</p>
+
+        <div id="suitpic1">
+            <img src="suit&shirt/single-double.jpg" alt="Single and Double Breasted suit">
+            <p>Single breasted on left and double breasted on right.</p>
+        </div>
+        </div>
+
+        <div id="suitcomponenttext">
+            <div id="section2-2">
+                <h4>Lapels</h4>
+            </div>
+            <p>On the jacket of the suit there are three types of lapels that will be seen, <b>notched</b>,
+                <b>peak</b> and <b>shawl</b>. The notched lapel is the most common type, and it can be found on many off
+                the rack suits. It is also versatile for any occasion. The peak lapel is reserved for slightly more formal
+                settings however it can be used less formally as well. The shawl lapel is the least common type of lapel as
+                it is seen as very formal and it is almost exclusive on tuxedos.</p>
+        </div>
+        <div id="suitpic2">
+            <img src="suit&shirt/lapels.jpg" alt="Suit Lapels">
+            <p>Notch:Left, Peak:Middle, Shawl:Right</p>
+        </div>
+
+        <div id="suitcomponenttext">
+            <div id="section2-3">
+            <h4>Vents</h4>
+            </div>
+            <p> A suit vent is a vertical slit that extends upwards from the bottom hem on the backside of a suit jacket or
+                blazer. There are three option to choose from,<b>single</b> or <b>double vent</b> or <b>ventless</b>.</p>
+        </div>
+        <div id="suitpic3">
+            <img src="suit&shirt/vents.jpg" alt="Suit vents">
+
+        </div>
+
+        <div id="suitcomponenttext">
+            <div id="section2-4">
+                <h4>Pleats</h4>
+            </div>
+        <p>Pleats are folds in the fabric of clothing and on pleated dress pants they are found at the front immediately
+           under the waistband, on either side of the fly. Pleats either come in a single fold or a double fold and you can
+           choose between forward or reverse folded. </p>
+        </div>
+        <div id="suitpic4">
+            <img src="suit&shirt/pleats.jpg" alt="Suit pants pleats">
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+         document.getElementById("togglebtn").addEventListener("click", function() {
+            var toc = document.getElementById("toc");
+            var button = document.getElementById("togglebtn");
+
+            if (toc.style.right === "0px") {
+                toc.style.right = "-280px"; // Hide TOC
+                button.style.right = "20px"; // Move button back
+            } else {
+                toc.style.right = "0px"; // Show TOC
+                button.style.right = "250px"; // Move button along with TOC
+            }
+        });
+
+        (function() {
+            let slideIndex = 0;
+            function showSlides() {
+                let slides = document.getElementsByClassName("mySlides");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 2000); // Change image every 2 seconds
+            }
+            window.onload = showSlides;
+        })();
+    </script>
+</body>
+</html>
